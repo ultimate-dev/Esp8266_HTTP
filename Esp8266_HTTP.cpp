@@ -47,12 +47,12 @@ boolean Esp::http(String uri, String method)
     String data = method + " /" + uri + "/\r\n\r\n";
     EspSerial.print("AT+CIPSEND=");
     EspSerial.println(data.length() + 2);
-    delay(2000);
+   
     if (EspSerial.find(">"))
     {
         EspSerial.println(data);
-        delay(1000);
-        return false;
+        while(!EspSerial.find("OK"));
+        return true;
     }
     else
         return false;
