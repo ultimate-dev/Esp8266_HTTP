@@ -2,8 +2,19 @@
 
 void Esp::begin(uint32_t baund)
 {
-  EspSerial.begin(baund);
+    EspSerial.begin(baund);
 }
+
+void Esp::listen()
+{
+    EspSerial.listen();
+}
+
+boolean Esp::available()
+{
+   return EspSerial.available();
+}
+
 
 boolean Esp::ready()
 {
@@ -52,11 +63,12 @@ boolean Esp::http(String uri, String method)
     String data = method + " /" + uri + "/\r\n\r\n";
     EspSerial.print("AT+CIPSEND=");
     EspSerial.println(data.length() + 2);
-   
+
     if (EspSerial.find(">"))
     {
         EspSerial.println(data);
-        while(!EspSerial.find("OK"));
+        while (!EspSerial.find("OK"))
+            ;
         return true;
     }
     else

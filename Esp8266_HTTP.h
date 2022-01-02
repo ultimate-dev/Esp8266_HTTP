@@ -17,6 +17,8 @@ private:
 public:
   Esp(uint8_t rx, uint8_t tx) : EspSerial(rx, tx){};
   void begin(uint32_t baund = 115200);
+  void listen();
+  boolean available();
   boolean ready();
   boolean clientMode();
   boolean connect(String ssid, String pass);
