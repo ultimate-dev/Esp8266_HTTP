@@ -1,5 +1,10 @@
 #include <Esp8266_HTTP.h>
 
+void Esp::begin(uint32_t baund)
+{
+  EspSerial.begin(baund);
+}
+
 boolean Esp::ready()
 {
     EspSerial.println("AT");
