@@ -16,6 +16,7 @@ private:
 
 public:
   Esp(uint8_t rx, uint8_t tx) : EspSerial(rx, tx){};
+  char read();
   void begin(uint32_t baund = 115200);
   void listen();
   boolean available();
